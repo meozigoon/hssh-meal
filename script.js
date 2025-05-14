@@ -27,15 +27,12 @@ dateInput.addEventListener('change', () => {
                 document.getElementById(key).innerHTML = '없음';
             }
 
-            // 급식 데이터 추출
             const mealData = data?.mealServiceDietInfo?.[1]?.row || [];
 
             for (const meal of mealData) {
                 const mealType = parseInt(meal.MMEAL_SC_CODE);
                 const rawContent = meal.DDISH_NM;
 
-                // 1. <br/>를 줄바꿈으로 바꾸고
-                // 2. 괄호 안 알레르기 번호를 회색 <span>으로 감싸기
                 const formattedContent = rawContent
                     .split(/<br\s*\/?>/gi)
                     .map(line => {

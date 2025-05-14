@@ -79,7 +79,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100%;
 }
 
-/* 회색으로 알레르기 정보 강조 */
 .allergy {
     color: #888;
     font-size: 0.95em;
