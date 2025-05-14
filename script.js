@@ -1,6 +1,24 @@
 const dateInput = document.getElementById('meal-date');
 
-dateInput.addEventListener('change', () => {
+// 오늘 날짜를 기본값으로 설정 (18시 이후면 다음날)
+function setTodayToInput(input) {
+    const now = new Date();
+    let yyyy = now.getFullYear();
+    let mm = String(now.getMonth() + 1).padStart(2, '0');
+    let dd = String(now.getDate()).padStart(2, '0');
+    if (now.getHours() >= 18) {
+        // 18시(6시) 이후면 다음날로
+        const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        yyyy = tomorrow.getFullYear();
+        mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        dd = String(tomorrow.getDate()).padStart(2, '0');
+    }
+    input.value = `${yyyy}-${mm}-${dd}`;
+}
+setTodayToInput(dateInput);
+
+// 날짜가 바뀌거나, 페이지가 처음 로드될 때 급식 정보를 자동으로 표시
+function fetchAndDisplayMeal() {
     const selectedDate = new Date(dateInput.value);
     const year = selectedDate.getFullYear();
     const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
@@ -22,7 +40,6 @@ dateInput.addEventListener('change', () => {
                 3: 'dinner'
             };
 
-            // 기본값 초기화
             for (const key of Object.values(meals)) {
                 document.getElementById(key).innerHTML = '없음';
             }
@@ -32,17 +49,15 @@ dateInput.addEventListener('change', () => {
             for (const meal of mealData) {
                 const mealType = parseInt(meal.MMEAL_SC_CODE);
                 const rawContent = meal.DDISH_NM;
-
                 const formattedContent = rawContent
-                    .split(/<br\s*\/?>/gi)
+                    .split(/<br\s*\/?\s*>/gi)
                     .map(line => {
                         return line.replace(
-                            /\(([\d.]+)\)/g,
+                            /\(([^)]+)\)/g,
                             '<span class="allergy">($1)</span>'
                         );
                     })
                     .join('<br>');
-
                 const elementId = meals[mealType];
                 if (elementId) {
                     document.getElementById(elementId).innerHTML = formattedContent;
@@ -55,4 +70,7 @@ dateInput.addEventListener('change', () => {
                 document.getElementById(key).innerHTML = '오류 발생';
             }
         });
-});
+}
+
+dateInput.addEventListener('change', fetchAndDisplayMeal);
+window.addEventListener('DOMContentLoaded', fetchAndDisplayMeal);
