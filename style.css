@@ -36,7 +36,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .meal-container {
     display: flex;
     justify-content: center;
-    gap: 0; /* 간격 없앰 */
+    gap: 0;
     flex-wrap: wrap;
 }
 
@@ -53,7 +53,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex: 1 1 200px;
     min-width: 180px;
     max-width: 300px;
-    min-height: 240px; /* 높이 더 증가 */
+    min-height: 240px;
 }
 
 .meal-title {
@@ -67,18 +67,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .meal-content {
     font-size: 20px;
-    font-weight: normal; /* 글자 얇게 */
+    font-weight: normal;
     white-space: pre-line;
     color: #000000;
     background-color: #f4f2e8;
     padding: 18px;
     border-radius: 6px;
-    flex: 1 1 auto; /* 내부 텍스트 상자가 바깥 상자에 맞춰지도록 */
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 100%; /* 가로폭 맞춤 */
+    width: 100%;
 }
 
 .allergy-info-box {
