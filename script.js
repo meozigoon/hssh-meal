@@ -1,4 +1,5 @@
 const dateInput = document.getElementById('meal-date');
+
 dateInput.addEventListener('change', () => {
     const selectedDate = new Date(dateInput.value);
     const year = selectedDate.getFullYear();
@@ -8,7 +9,9 @@ dateInput.addEventListener('change', () => {
 
     const apiKey = 'b9051bf44db6484e8e82f71c8c422100';
     const proxy = 'https://corsproxy.io/?';
-    const url = proxy + encodeURIComponent(`https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=B10&SD_SCHUL_CODE=7010115&MLSV_YMD=${dateString}&Type=json&Key=${apiKey}`);
+    const url = proxy + encodeURIComponent(
+        `https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=B10&SD_SCHUL_CODE=7010115&MLSV_YMD=${dateString}&Type=json&Key=${apiKey}`
+    );
 
     fetch(url)
         .then(response => response.json())
@@ -19,25 +22,40 @@ dateInput.addEventListener('change', () => {
                 3: 'dinner'
             };
 
+            // 기본값 초기화
             for (const key of Object.values(meals)) {
-                document.getElementById(key).textContent = '없음';
+                document.getElementById(key).innerHTML = '없음';
             }
 
-            const mealData = data.mealServiceDietInfo?.[1]?.row || [];
+            // 급식 데이터 추출
+            const mealData = data?.mealServiceDietInfo?.[1]?.row || [];
 
             for (const meal of mealData) {
                 const mealType = parseInt(meal.MMEAL_SC_CODE);
-                const content = meal.DDISH_NM.replace(/<br\/>/gi, '\n');
+                const rawContent = meal.DDISH_NM;
+
+                // 1. <br/>를 줄바꿈으로 바꾸고
+                // 2. 괄호 안 알레르기 번호를 회색 <span>으로 감싸기
+                const formattedContent = rawContent
+                    .split(/<br\s*\/?>/gi)
+                    .map(line => {
+                        return line.replace(
+                            /\(([\d.]+)\)/g,
+                            '<span class="allergy">($1)</span>'
+                        );
+                    })
+                    .join('<br>');
+
                 const elementId = meals[mealType];
                 if (elementId) {
-                    document.getElementById(elementId).textContent = content;
+                    document.getElementById(elementId).innerHTML = formattedContent;
                 }
             }
         })
         .catch(error => {
             console.error('급식 정보 불러오기 실패:', error);
             for (const key of ['breakfast', 'lunch', 'dinner']) {
-                document.getElementById(key).textContent = '오류 발생';
+                document.getElementById(key).innerHTML = '오류 발생';
             }
         });
 });

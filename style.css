@@ -1,7 +1,7 @@
 body {
-    background-color: #0a0f3c; /* 어두운 네이비 */
+    background-color: #0a0f3c;
     font-family: Arial, sans-serif;
-    color: #fdfdf5; /* 밝은 아이보리 텍스트 */
+    color: #fdfdf5;
     padding: 20px;
     text-align: center;
 }
@@ -12,7 +12,7 @@ h1 {
 }
 
 .date-box {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 18px;
 }
 
@@ -36,24 +36,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .meal-container {
     display: flex;
     justify-content: center;
-    gap: 0;
+    gap: 10px;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .meal-box {
     border: 2px solid #87cefa;
     border-radius: 10px;
     padding: 15px;
-    margin: 15px auto;
+    margin: 10px 5px;
     background-color: #1b1f3a;
-    max-width: 500px;
     box-shadow: 0 0 10px rgba(135, 206, 250, 0.3);
     display: flex;
     flex-direction: column;
     flex: 1 1 200px;
     min-width: 180px;
     max-width: 300px;
-    min-height: 240px;
+    min-height: 220px;
 }
 
 .meal-title {
@@ -66,23 +66,30 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .meal-content {
-    font-size: 20px;
-    font-weight: normal;
+    font-size: 16px;
+    line-height: 1.6;
     white-space: pre-line;
     color: #000000;
     background-color: #f4f2e8;
-    padding: 18px;
+    padding: 12px;
     border-radius: 6px;
     flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     box-sizing: border-box;
     width: 100%;
 }
 
+/* 회색으로 알레르기 정보 강조 */
+.allergy {
+    color: #888;
+    font-size: 0.95em;
+    margin-left: 2px;
+    display: inline-block;
+    text-align: center;
+}
+
 .allergy-info-box {
-    background: #fdfdf5;
+    background: #f4f2e8;
     color: #000;
     border-radius: 10px;
     padding: 18px 20px;
