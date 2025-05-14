@@ -1,0 +1,107 @@
+body {
+    background-color: #0a0f3c; /* 어두운 네이비 */
+    font-family: Arial, sans-serif;
+    color: #fdfdf5; /* 밝은 아이보리 텍스트 */
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #87cefa;
+    margin-bottom: 20px;
+}
+
+.date-box {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+input[type="date"] {
+    padding: 6px 10px;
+    font-size: 16px;
+    border: 2px solid #87cefa;
+    border-radius: 6px;
+    background-color: #0a0f3c;
+    color: #fdfdf5;
+}
+
+input[type="date"]::placeholder {
+    color: #87cefa;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(94%) sepia(6%) saturate(116%) hue-rotate(16deg) brightness(104%) contrast(104%);
+}
+
+.meal-container {
+    display: flex;
+    justify-content: center;
+    gap: 0; /* 간격 없앰 */
+    flex-wrap: wrap;
+}
+
+.meal-box {
+    border: 2px solid #87cefa;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px auto;
+    background-color: #1b1f3a;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(135, 206, 250, 0.3);
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 200px;
+    min-width: 180px;
+    max-width: 300px;
+    min-height: 240px; /* 높이 더 증가 */
+}
+
+.meal-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fdfdf5;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #87cefa;
+    padding-bottom: 5px;
+}
+
+.meal-content {
+    font-size: 20px;
+    font-weight: normal; /* 글자 얇게 */
+    white-space: pre-line;
+    color: #000000;
+    background-color: #f4f2e8;
+    padding: 18px;
+    border-radius: 6px;
+    flex: 1 1 auto; /* 내부 텍스트 상자가 바깥 상자에 맞춰지도록 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%; /* 가로폭 맞춤 */
+}
+
+.allergy-info-box {
+    background: #fdfdf5;
+    color: #000;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 30px auto 0 auto;
+    max-width: 650px;
+    font-size: 16px;
+    box-shadow: 0 0 8px rgba(135, 206, 250, 0.15);
+}
+
+.allergy-info-box h2 {
+    color: #1b1f3a;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.allergy-info-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
